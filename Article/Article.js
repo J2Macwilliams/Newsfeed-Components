@@ -116,10 +116,32 @@ const data = [
 
 function componentCreator(title, date, firstParagraph, secondParagraph, thirdParagraph){
   const article = document.createElement('div');
-  const title = document.createElement('h2');
-  const date = document.createElement('p');
-  const para1 = document.createElement('p');
-  const para2 = document.createElement('p');
-  const para3 = document.createElement('p');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articlePara1 = document.createElement('p');
+  const articlePara2 = document.createElement('p');
+  const articlePara3 = document.createElement('p');
   const expand = document.createElement('span');
+
+  //set up structure of the elements
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articlePara1);
+  article.appendChild(articlePara2);
+  article.appendChild(articlePara3);
+  article.appendChild(expand);
+
+  //set class name
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  expand.classList.add('expandButton');
+
+  //set content
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articlePara1.textContent = para1;
+  articlePara2.textContent = para2;
+  articlePara3.textContent = para3;
+  
+  return article
 }
