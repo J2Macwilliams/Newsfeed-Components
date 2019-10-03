@@ -176,3 +176,13 @@ function componentCreator(story){
 data.forEach(story => {
   articles.appendChild(componentCreator(story))
 })
+
+const title = document.querySelector(".title")
+
+title.addEventListener("click", () => {
+  TweenMax.to(".title", 1, {
+    rotation: 360,
+      ease: Elastic.easeOut.config( 1, 0.75),
+  })
+})
+

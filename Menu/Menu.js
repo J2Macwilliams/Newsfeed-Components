@@ -34,27 +34,31 @@ let menuItems = [
   
 */
 const header = document.querySelector('.header');
-const menuBridge = document.querySelector('.menu-button');
+const menuButton = document.querySelector('.menu-button');
 
-function menuDropDown(items) {
-  // creating elements
+function menuDropDown(itemsArray) {
+  // create elements
   const menu = document.createElement('div');
   const ulist = document.createElement('ul');
-  // setting the structure
+
+  // set structure
   menu.appendChild(ulist);
-  //setting the content
-  menuItems.forEach((i) => {
+
+  //set content
+  itemsArray.forEach((item) => {
     const li = document.createElement('li');
-    li.textContent = i;
+    li.textContent = item;
     ulist.appendChild(li);
   })
-  // applying styles
+
+  // apply styles
   menu.classList.add('menu');
-  // adding the event handler
-  menuBridge.addEventListener('click', (e) => {
+
+  // add event handler
+  menuButton.addEventListener('click', (e) => {
     menu.classList.toggle('menu--open');
   })
   return menu;
 }
-// tying in to the header
+// tie in header
 header.appendChild(menuDropDown(menuItems));
