@@ -85,6 +85,25 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Madeline is related to Sherlock Holmes',
+    date: 'May 2nd, 2019',
+    firstParagraph: `I can Find the Solution! I don't even need an magnifying Glass!!!!!!!!! Watson! Ut aliquip ex ea commodo consequat James 
+    Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous. `,
+
+    secondParagraph: `I don't even know what to say. So much love to give. These peeps at Lambda are super cool.!! Ut aliquip ex ea commodo consequat James Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.Ut aliquip ex ea commodo consequat James Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`,
+
+    thirdParagraph: ` Now only to figure out what is for Dinner? Ut aliquip ex ea commodo consequat James Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous. `
+  },
+  {
+    title: 'Amazing Adventure',
+    date: 'July26, 2019',
+    firstParagraph: `It's easy to see why Hawaii has become synonymous with paradise. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla dolore voluptates consequuntur? Beatae iusto nisi, blanditiis sint aperiam voluptatibus expedita at commodi architecto, quis nemo fugiat obcaecati perspiciatis mollitia ab.`,
+
+    secondParagraph: `Just look at these sugary beaches, Technicolor coral reefs and volcanoes beckoning adventurous spirits.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla dolore voluptates consequuntur? Beatae iusto nisi, blanditiis sint aperiam voluptatibus expedita at commodi architecto, quis nemo fugiat obcaecati perspiciatis mollitia ab.`,
+
+    thirdParagraph: `Obviously a 'secret' no longer, these powdery white sands extend along massive cliffs for more than a mile, wrapping around two rock reefs, all the way to Kilauea Point.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla dolore voluptates consequuntur? Beatae iusto nisi, blanditiis sint aperiam voluptatibus expedita at commodi architecto, quis nemo fugiat obcaecati perspiciatis mollitia ab. `
   }
 ];
 
@@ -99,6 +118,7 @@ const data = [
     <span class='expandButton'></span>
   </div>
 
+
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
@@ -112,3 +132,57 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const articles = document.querySelector(".articles");
+
+function componentCreator(story){
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articlePara1 = document.createElement('p');
+  const articlePara2 = document.createElement('p');
+  const articlePara3 = document.createElement('p');
+  const expand = document.createElement('span');
+
+  //set up structure of the elements
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articlePara1);
+  article.appendChild(articlePara2);
+  article.appendChild(articlePara3);
+  article.appendChild(expand);
+
+  //set class name
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  expand.classList.add('expandButton');
+
+  //set content
+  articleTitle.textContent = story.title;
+  articleDate.textContent = story.date;
+  articlePara1.textContent = story.firstParagraph;
+  articlePara2.textContent = story.secondParagraph;
+  articlePara3.textContent = story.thirdParagraph;
+  
+  //event listener for the expand button
+  article.addEventListener('click', (e) => {
+    console.log('button clicked', e.target);
+
+  //toggle event
+    article.classList.toggle('article-open');
+ }) 
+  return article
+}
+
+data.forEach(story => {
+  articles.appendChild(componentCreator(story))
+})
+
+const title = document.querySelector(".title")
+
+title.addEventListener("click", () => {
+  TweenMax.to(".title", 1, {
+    rotation: 360,
+      ease: Elastic.easeOut.config( 1, 0.75),
+  })
+})
+
